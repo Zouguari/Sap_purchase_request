@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZI_PurchaseRequestItem'
+@MappingRole: true
+define role ZI_PurchaseRequestItem {
+  grant select on ZI_PurchaseRequestItem
+  where INHERITING CONDITIONS FROM ENTITY ZI_PurchaseRequest REPLACING { ROOT WITH _PurchaseRequest };
+}

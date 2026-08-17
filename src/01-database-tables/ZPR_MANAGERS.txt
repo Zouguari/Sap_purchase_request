@@ -1,0 +1,9 @@
+@EndUserText.label : 'Purchase Request Managers'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #C
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zpr_managers {
+  key client : abap.clnt not null;
+  key bname  : syuname not null;
+}

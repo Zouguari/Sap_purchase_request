@@ -1,0 +1,82 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeName: 'Purchase Request',
+  typeNamePlural: 'Purchase Requests',
+  title: { type: #STANDARD, value: 'PrNumber' },
+  description: { type: #STANDARD, value: 'Description' }
+}
+
+annotate view ZC_PurchaseRequest with
+{
+  @UI.facet: [
+    {
+      id: 'GeneralInfo',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'General Information',
+      position: 10
+    },
+    {
+      id: 'Items',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Items',
+      position: 20,
+      targetElement: '_Item'
+    }
+  ]
+
+  @UI.identification: [ { position: 10 } ]
+  @UI.lineItem: [ { position: 10 } ]
+  @UI.selectionField: [ { position: 10 } ]
+  @EndUserText.label: 'PR Number'
+  PrNumber;
+
+  @UI.identification: [ { position: 20 } ]
+  @UI.lineItem: [ { position: 20 } ]
+  @UI.selectionField: [ { position: 20 } ]
+  @EndUserText.label: 'Requester'
+  Requester;
+
+  @UI.identification: [ { position: 30 } ]
+  @UI.lineItem: [ { position: 30 } ]
+  @EndUserText.label: 'Description'
+  Description;
+
+  @UI.identification: [ { position: 40 } ]
+  @UI.lineItem: [ { position: 40 } ]
+  @UI.selectionField: [ { position: 30 } ]
+  @EndUserText.label: 'Category'
+  Category;
+
+  @UI.identification: [ { position: 50 } ]
+  @UI.lineItem: [ { position: 50 } ]
+  @UI.selectionField: [ { position: 40 } ]
+  @EndUserText.label: 'Priority'
+  Priority;
+
+  @UI.identification: [
+    { position: 60 },
+    { type: #FOR_ACTION, dataAction: 'submit', label: 'Submit' },
+    { type: #FOR_ACTION, dataAction: 'approve', label: 'Approve' },
+    { type: #FOR_ACTION, dataAction: 'reject', label: 'Reject' }
+  ]
+  @UI.lineItem: [ { position: 60 } ]
+  @UI.selectionField: [ { position: 50 } ]
+  @EndUserText.label: 'Status'
+  Status;
+
+  @UI.identification: [ { position: 70 } ]
+  @UI.lineItem: [ { position: 70 } ]
+  @EndUserText.label: 'Requested Date'
+  RequestedDate;
+
+  @UI.identification: [ { position: 80 } ]
+  @UI.lineItem: [ { position: 80 } ]
+  @EndUserText.label: 'Total Amount'
+  TotalAmount;
+
+  @UI.identification: [ { position: 90 } ]
+  @EndUserText.label: 'Reject Reason'
+  RejectReason;
+}

@@ -1,0 +1,5 @@
+@EndUserText.label: 'Purchase Request Service'
+define service ZUI_PURCHASEREQUEST {
+  expose ZC_PurchaseRequest     as PurchaseRequest;
+  expose ZC_PurchaseRequestItem as PurchaseRequestItem;
+}

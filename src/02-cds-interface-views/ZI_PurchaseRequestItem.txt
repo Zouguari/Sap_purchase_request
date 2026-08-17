@@ -1,0 +1,40 @@
+@AccessControl.authorizationCheck: #MANDATORY
+@Metadata.allowExtensions: true
+@ObjectModel.sapObjectNodeType.name: 'ZPRITEM2_20'
+@EndUserText.label: 'Purchase Request Item'
+define view entity ZI_PurchaseRequestItem
+  as select from zpr_item2
+  association to parent ZI_PurchaseRequest as _PurchaseRequest on $projection.PrId = _PurchaseRequest.PrId
+{
+  key item_id as ItemId,
+  pr_id as PrId,
+  item_number as ItemNumber,
+  product as Product,
+  @Semantics.quantity.unitOfMeasure: 'Unit'
+  quantity as Quantity,
+  @Consumption.valueHelpDefinition: [ {
+    entity.name: 'I_UnitOfMeasureStdVH',
+    entity.element: 'UnitOfMeasure',
+    useForValidation: true
+  } ]
+  unit as Unit,
+  @Semantics.amount.currencyCode: 'Currency'
+  price as Price,
+  @Semantics.amount.currencyCode: 'Currency'
+  item_amount as ItemAmount,
+  @Consumption.valueHelpDefinition: [ {
+    entity.name: 'I_CurrencyStdVH',
+    entity.element: 'Currency',
+    useForValidation: true
+  } ]
+  currency as Currency,
+  created_by as CreatedBy,
+  created_at as CreatedAt,
+  last_changed_by as LastChangedBy,
+  @Semantics.systemDateTime.lastChangedAt: true
+  last_changed_at as LastChangedAt,
+  @Semantics.systemDateTime.localInstanceLastChangedAt: true
+  local_last_changed_at as LocalLastChangedAt,
+
+  _PurchaseRequest
+}

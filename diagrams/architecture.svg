@@ -1,0 +1,118 @@
+<svg viewBox="0 0 1000 1180" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6b7c"/>
+    </marker>
+    <linearGradient id="sapBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a6ed1"/>
+      <stop offset="100%" stop-color="#085caf"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="1180" fill="#f5f7fa"/>
+
+  <!-- Title -->
+  <text x="500" y="45" text-anchor="middle" font-size="26" font-weight="700" fill="#1c2b36">SAP Purchase Request &amp; Approval</text>
+  <text x="500" y="70" text-anchor="middle" font-size="14" fill="#5b6b7c">ABAP Cloud / RAP Architecture</text>
+
+  <!-- Layer: UI -->
+  <rect x="120" y="105" width="760" height="90" rx="10" fill="#ffffff" stroke="#0a6ed1" stroke-width="1.5"/>
+  <rect x="120" y="105" width="8" height="90" fill="url(#sapBlue)"/>
+  <text x="500" y="135" text-anchor="middle" font-size="16" font-weight="600" fill="#1c2b36">SAP Fiori Elements</text>
+  <text x="500" y="158" text-anchor="middle" font-size="12.5" fill="#5b6b7c">List Report (filters) + Object Page (General Info facet + inline Items table)</text>
+  <text x="500" y="177" text-anchor="middle" font-size="12.5" fill="#5b6b7c">Workflow action buttons: Submit · Approve · Reject</text>
+
+  <line x1="500" y1="195" x2="500" y2="220" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Layer: OData -->
+  <rect x="120" y="220" width="760" height="70" rx="10" fill="#ffffff" stroke="#3fa2f7" stroke-width="1.5"/>
+  <rect x="120" y="220" width="8" height="70" fill="#3fa2f7"/>
+  <text x="500" y="250" text-anchor="middle" font-size="15" font-weight="600" fill="#1c2b36">OData V4 Service Binding</text>
+  <text x="500" y="270" text-anchor="middle" font-size="12" fill="#5b6b7c">ZUI_PURCHASEREQUEST_O4</text>
+
+  <line x1="500" y1="290" x2="500" y2="315" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Layer: Service Definition -->
+  <rect x="120" y="315" width="760" height="60" rx="10" fill="#ffffff" stroke="#3fa2f7" stroke-width="1.5"/>
+  <rect x="120" y="315" width="8" height="60" fill="#3fa2f7"/>
+  <text x="500" y="340" text-anchor="middle" font-size="15" font-weight="600" fill="#1c2b36">Service Definition</text>
+  <text x="500" y="358" text-anchor="middle" font-size="12" fill="#5b6b7c">ZUI_PURCHASEREQUEST — exposes PurchaseRequest, PurchaseRequestItem</text>
+
+  <line x1="500" y1="375" x2="500" y2="400" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Layer: Metadata Extensions -->
+  <rect x="120" y="400" width="760" height="55" rx="10" fill="#fff8e6" stroke="#e9a325" stroke-width="1.5"/>
+  <rect x="120" y="400" width="8" height="55" fill="#e9a325"/>
+  <text x="500" y="424" text-anchor="middle" font-size="14" font-weight="600" fill="#1c2b36">Metadata Extensions</text>
+  <text x="500" y="442" text-anchor="middle" font-size="11.5" fill="#5b6b7c">@UI.facet · @UI.lineItem · @UI.identification (FOR_ACTION: submit/approve/reject)</text>
+
+  <line x1="500" y1="455" x2="500" y2="480" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Layer: Projection Views (2 boxes) -->
+  <rect x="140" y="480" width="330" height="75" rx="10" fill="#ffffff" stroke="#0a6ed1" stroke-width="1.5"/>
+  <text x="305" y="508" text-anchor="middle" font-size="14" font-weight="600" fill="#1c2b36">ZC_PurchaseRequest</text>
+  <text x="305" y="527" text-anchor="middle" font-size="11" fill="#5b6b7c">Projection View (root)</text>
+  <text x="305" y="544" text-anchor="middle" font-size="10.5" fill="#8a97a3">provider contract transactional_query</text>
+
+  <rect x="530" y="480" width="330" height="75" rx="10" fill="#ffffff" stroke="#0a6ed1" stroke-width="1.5"/>
+  <text x="695" y="508" text-anchor="middle" font-size="14" font-weight="600" fill="#1c2b36">ZC_PurchaseRequestItem</text>
+  <text x="695" y="527" text-anchor="middle" font-size="11" fill="#5b6b7c">Projection View (item)</text>
+  <text x="695" y="544" text-anchor="middle" font-size="10.5" fill="#8a97a3">redirected to parent / composition child</text>
+
+  <line x1="305" y1="555" x2="305" y2="580" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="695" y1="555" x2="695" y2="580" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Layer: Projection Behavior -->
+  <rect x="120" y="580" width="760" height="55" rx="10" fill="#f0f6fc" stroke="#0a6ed1" stroke-width="1.5"/>
+  <rect x="120" y="580" width="8" height="55" fill="#0a6ed1"/>
+  <text x="500" y="604" text-anchor="middle" font-size="14" font-weight="600" fill="#1c2b36">Behavior Definition — Projection</text>
+  <text x="500" y="622" text-anchor="middle" font-size="11.5" fill="#5b6b7c">use create/update/delete · use draft · use action submit/approve/reject</text>
+
+  <line x1="500" y1="635" x2="500" y2="660" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Layer: Interface Views (2 boxes) -->
+  <rect x="140" y="660" width="330" height="75" rx="10" fill="#ffffff" stroke="#085caf" stroke-width="1.5"/>
+  <text x="305" y="688" text-anchor="middle" font-size="14" font-weight="600" fill="#1c2b36">ZI_PurchaseRequest</text>
+  <text x="305" y="707" text-anchor="middle" font-size="11" fill="#5b6b7c">Interface View (root)</text>
+  <text x="305" y="724" text-anchor="middle" font-size="10.5" fill="#8a97a3">composition [0..*] of _Item</text>
+
+  <rect x="530" y="660" width="330" height="75" rx="10" fill="#ffffff" stroke="#085caf" stroke-width="1.5"/>
+  <text x="695" y="688" text-anchor="middle" font-size="14" font-weight="600" fill="#1c2b36">ZI_PurchaseRequestItem</text>
+  <text x="695" y="707" text-anchor="middle" font-size="11" fill="#5b6b7c">Interface View (item)</text>
+  <text x="695" y="724" text-anchor="middle" font-size="10.5" fill="#8a97a3">association to parent _PurchaseRequest</text>
+
+  <line x1="305" y1="735" x2="305" y2="760" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="695" y1="735" x2="695" y2="760" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Layer: Managed Behavior -->
+  <rect x="120" y="760" width="760" height="140" rx="10" fill="#eef8ee" stroke="#2e7d32" stroke-width="1.5"/>
+  <rect x="120" y="760" width="8" height="140" fill="#2e7d32"/>
+  <text x="500" y="786" text-anchor="middle" font-size="15" font-weight="700" fill="#1c2b36">Managed Behavior Definition</text>
+  <text x="500" y="806" text-anchor="middle" font-size="11.5" fill="#3d5a3f">create · update · delete · draft (Edit/Activate/Discard/Resume/Prepare)</text>
+  <text x="500" y="825" text-anchor="middle" font-size="11.5" fill="#3d5a3f">Determinations: setInitialValues (Status=NEW) · calculateItemAmount · calculateTotalAmount</text>
+  <text x="500" y="844" text-anchor="middle" font-size="11.5" fill="#3d5a3f">Validations: validateHeader · validateItem</text>
+  <text x="500" y="863" text-anchor="middle" font-size="11.5" fill="#3d5a3f">Actions: submit() · approve() · reject(reason)  —  NEW → SUBMITTED → APPROVED / REJECTED</text>
+  <text x="500" y="882" text-anchor="middle" font-size="11.5" fill="#3d5a3f">get_instance_authorizations: Employee (own, status=NEW) vs Manager (approve/reject)</text>
+
+  <line x1="500" y1="900" x2="500" y2="925" stroke="#5b6b7c" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Layer: DB Tables -->
+  <rect x="120" y="925" width="240" height="70" rx="10" fill="#ffffff" stroke="#6c4fa1" stroke-width="1.5"/>
+  <text x="240" y="955" text-anchor="middle" font-size="13" font-weight="600" fill="#1c2b36">ZPR_HDR_20</text>
+  <text x="240" y="972" text-anchor="middle" font-size="10.5" fill="#5b6b7c">Header table</text>
+
+  <rect x="380" y="925" width="240" height="70" rx="10" fill="#ffffff" stroke="#6c4fa1" stroke-width="1.5"/>
+  <text x="500" y="955" text-anchor="middle" font-size="13" font-weight="600" fill="#1c2b36">ZPR_ITEM2_20</text>
+  <text x="500" y="972" text-anchor="middle" font-size="10.5" fill="#5b6b7c">Item table</text>
+
+  <rect x="640" y="925" width="240" height="70" rx="10" fill="#ffffff" stroke="#6c4fa1" stroke-width="1.5"/>
+  <text x="760" y="955" text-anchor="middle" font-size="13" font-weight="600" fill="#1c2b36">ZPR_MANAGERS</text>
+  <text x="760" y="972" text-anchor="middle" font-size="10.5" fill="#5b6b7c">Manager authorization table</text>
+
+  <!-- Legend / footer -->
+  <rect x="120" y="1030" width="760" height="120" rx="10" fill="#ffffff" stroke="#d3dbe1" stroke-width="1"/>
+  <text x="145" y="1058" font-size="13" font-weight="700" fill="#1c2b36">Status workflow</text>
+  <text x="145" y="1082" font-size="12" fill="#3d5a3f" font-family="Consolas, monospace">NEW ──submit──▶ SUBMITTED ──approve──▶ APPROVED</text>
+  <text x="290" y="1104" font-size="12" fill="#a13d3d" font-family="Consolas, monospace">└──reject (reason required)──▶ REJECTED</text>
+  <text x="145" y="1132" font-size="11" fill="#8a97a3">Package: ZPR_PURCHASE2 · System: ABAP Cloud (S/4HANA Cloud, Public Edition trial)</text>
+</svg>

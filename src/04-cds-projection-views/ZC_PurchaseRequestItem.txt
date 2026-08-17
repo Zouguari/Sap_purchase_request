@@ -1,0 +1,40 @@
+@Metadata.allowExtensions: true
+@Metadata.ignorePropagatedAnnotations: true
+@EndUserText.label: 'Purchase Request Item Projection'
+@ObjectModel.sapObjectNodeType.name: 'ZPRITEM2_20'
+@AccessControl.authorizationCheck: #MANDATORY
+define view entity ZC_PurchaseRequestItem
+  as projection on ZI_PurchaseRequestItem
+{
+  key ItemId,
+  PrId,
+  ItemNumber,
+  Product,
+  @Semantics.quantity.unitOfMeasure: 'Unit'
+  Quantity,
+  @Consumption.valueHelpDefinition: [ {
+    entity.name: 'I_UnitOfMeasureStdVH',
+    entity.element: 'UnitOfMeasure',
+    useForValidation: true
+  } ]
+  Unit,
+  @Semantics.amount.currencyCode: 'Currency'
+  Price,
+  @Semantics.amount.currencyCode: 'Currency'
+  ItemAmount,
+  @Consumption.valueHelpDefinition: [ {
+    entity.name: 'I_CurrencyStdVH',
+    entity.element: 'Currency',
+    useForValidation: true
+  } ]
+  Currency,
+  CreatedBy,
+  CreatedAt,
+  LastChangedBy,
+  @Semantics.systemDateTime.lastChangedAt: true
+  LastChangedAt,
+  @Semantics.systemDateTime.localInstanceLastChangedAt: true
+  LocalLastChangedAt,
+
+  _PurchaseRequest : redirected to parent ZC_PurchaseRequest
+}

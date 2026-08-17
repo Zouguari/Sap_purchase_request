@@ -1,0 +1,24 @@
+@EndUserText.label : 'Purchase Request Header'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zpr_hdr_20 {
+  key client       : abap.clnt not null;
+  key pr_id        : sysuuid_x16 not null;
+  pr_number        : abap.numc(10);
+  requester        : abap.char(12);
+  description      : abap.char(100);
+  category         : abap.char(10);
+  priority         : abap.char(6);
+  status           : abap.char(10);
+  requested_date   : abap.dats;
+  total_amount     : abap.curr(15,2);
+  currency         : abap.cuky;
+  reject_reason    : abap.char(255);
+  created_by       : syuname;
+  created_at       : timestampl;
+  last_changed_by  : syuname;
+  last_changed_at  : timestampl;
+  local_last_changed_at : timestampl;
+}

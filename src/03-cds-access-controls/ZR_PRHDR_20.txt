@@ -1,0 +1,5 @@
+@EndUserText.label: 'ZI_PurchaseRequest'
+@MappingRole: true
+define role ZI_PurchaseRequest {
+  grant select on ZI_PurchaseRequest;
+}

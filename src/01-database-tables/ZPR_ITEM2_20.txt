@@ -1,0 +1,21 @@
+@EndUserText.label : 'Purchase Request Item'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zpr_item2_20 {
+  key client     : abap.clnt not null;
+  key item_id    : sysuuid_x16 not null;
+  pr_id          : sysuuid_x16 not null;
+  item_number    : abap.numc(5);
+  product        : abap.char(40);
+  quantity       : abap.quan(13,3);
+  unit           : abap.unit(3);
+  price          : abap.curr(15,2);
+  currency       : abap.cuky;
+  item_amount    : abap.curr(15,2);
+  created_by     : syuname;
+  created_at     : timestampl;
+  last_changed_by : syuname;
+  last_changed_at : timestampl;
+}

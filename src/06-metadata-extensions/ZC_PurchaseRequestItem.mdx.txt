@@ -1,0 +1,31 @@
+@Metadata.layer: #CORE
+annotate entity ZC_PurchaseRequestItem with
+{
+  @UI.lineItem: [ { position: 10 } ]
+  @EndUserText.label: 'Item Number'
+  ItemNumber;
+
+  @UI.lineItem: [ { position: 20 } ]
+  @EndUserText.label: 'Product'
+  Product;
+
+  @UI.lineItem: [ { position: 30 } ]
+  @EndUserText.label: 'Quantity'
+  Quantity;
+
+  @UI.lineItem: [ { position: 40 } ]
+  @EndUserText.label: 'Unit'
+  Unit;
+
+  @UI.lineItem: [ { position: 50 } ]
+  @EndUserText.label: 'Price'
+  Price;
+
+  @UI.lineItem: [ { position: 60 } ]
+  @EndUserText.label: 'Currency'
+  Currency;
+
+  @UI.lineItem: [ { position: 70 } ]
+  @EndUserText.label: 'Item Amount'
+  ItemAmount;
+}

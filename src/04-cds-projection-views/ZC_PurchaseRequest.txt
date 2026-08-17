@@ -1,0 +1,36 @@
+@Metadata.allowExtensions: true
+@Metadata.ignorePropagatedAnnotations: true
+@EndUserText.label: 'Purchase Request Projection'
+@ObjectModel.sapObjectNodeType.name: 'ZPRHDR_20'
+@AccessControl.authorizationCheck: #MANDATORY
+define root view entity ZC_PurchaseRequest
+  provider contract transactional_query
+  as projection on ZI_PurchaseRequest
+{
+  key PrId,
+  PrNumber,
+  Requester,
+  Description,
+  Category,
+  Priority,
+  Status,
+  RequestedDate,
+  @Semantics.amount.currencyCode: 'Currency'
+  TotalAmount,
+  @Consumption.valueHelpDefinition: [ {
+    entity.name: 'I_CurrencyStdVH',
+    entity.element: 'Currency',
+    useForValidation: true
+  } ]
+  Currency,
+  RejectReason,
+  CreatedBy,
+  CreatedAt,
+  LastChangedBy,
+  @Semantics.systemDateTime.lastChangedAt: true
+  LastChangedAt,
+  @Semantics.systemDateTime.localInstanceLastChangedAt: true
+  LocalLastChangedAt,
+
+  _Item : redirected to composition child ZC_PurchaseRequestItem
+}

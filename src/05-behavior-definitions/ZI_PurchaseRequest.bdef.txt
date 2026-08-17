@@ -1,0 +1,153 @@
+managed implementation in class zbp_i_purchaserequest unique;
+
+strict ( 2 );
+with draft;
+
+define behavior for ZI_PurchaseRequest alias PurchaseRequest
+persistent table zpr_hdr
+draft table zpr_hdr_d
+lock master
+total etag LastChangedAt
+authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly )
+    PrId;
+
+  field ( readonly )
+    Status,
+    TotalAmount,
+    CreatedBy,
+    CreatedAt,
+    LastChangedBy,
+    LastChangedAt,
+    LocalLastChangedAt;
+
+  field ( mandatory )
+    Description,
+    Category,
+    Priority,
+    RequestedDate;
+
+  association _Item
+  {
+    create;
+    with draft;
+  }
+
+  determination setInitialValues on modify { create; }
+
+  validation validateHeader on save { create; update; }
+
+  action submit result [1] $self;
+  action approve result [1] $self;
+  action reject parameter zpr_s_reject_reason result [1] $self;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+
+  draft determine action Prepare
+  {
+    validation PurchaseRequestItem~validateItem;
+    validation validateHeader;
+  }
+
+  mapping for zpr_hdr
+  {
+    PrId               = pr_id;
+    PrNumber           = pr_number;
+    Requester          = requester;
+    Description        = description;
+    Category           = category;
+    Priority           = priority;
+    Status              = status;
+    RequestedDate      = requested_date;
+    TotalAmount        = total_amount;
+    Currency           = currency;
+    RejectReason       = reject_reason;
+    CreatedBy          = created_by;
+    CreatedAt          = created_at;
+    LastChangedBy      = last_changed_by;
+    LastChangedAt      = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZI_PurchaseRequestItem alias PurchaseRequestItem
+persistent table zpr_item2
+draft table zpr_item2_d
+lock dependent by _PurchaseRequest
+authorization dependent by _PurchaseRequest
+{
+  update;
+  delete;
+
+  field ( numbering : managed, readonly )
+    ItemId;
+
+  field ( readonly )
+    PrId,
+    ItemAmount,
+    CreatedBy,
+    CreatedAt,
+    LastChangedBy,
+    LastChangedAt;
+
+  field ( mandatory )
+    Product,
+    Quantity,
+    Price;
+
+  determination calculateItemAmount
+    on modify
+    {
+      field Quantity,
+            Price;
+    }
+
+  determination calculateTotalAmount
+    on modify
+    {
+      create;
+      update;
+      delete;
+      field Quantity,
+            Price,
+            ItemAmount;
+    }
+
+  validation validateItem
+    on save
+    {
+      field Quantity,
+            Product;
+    }
+
+  association _PurchaseRequest
+  {
+    with draft;
+  }
+
+  mapping for zpr_item2
+  {
+    ItemId        = item_id;
+    PrId          = pr_id;
+    ItemNumber    = item_number;
+    Product       = product;
+    Quantity      = quantity;
+    Unit          = unit;
+    Price         = price;
+    Currency      = currency;
+    ItemAmount    = item_amount;
+    CreatedBy     = created_by;
+    CreatedAt     = created_at;
+    LastChangedBy = last_changed_by;
+    LastChangedAt = last_changed_at;
+  }
+}

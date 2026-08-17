@@ -1,0 +1,4 @@
+@EndUserText.label : 'Reject Reason Parameter'
+define structure zpr_s_reject_reason {
+  reject_reason : abap.char(255);
+}
